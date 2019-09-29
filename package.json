@@ -5,7 +5,8 @@
   "main": "src/loader.js",
   "scripts": {
     "dev": "nodemon",
-    "production": "pm2 start src/loader.js --name timogf",
+    "prod-runtime": "pm2-runtime src/loader.js --name timogf",
+    "prod-background": "pm2 start src/loader.js --name timogf",
     "test": "mocha src/test/service --exit"
   },
   "keywords": [],

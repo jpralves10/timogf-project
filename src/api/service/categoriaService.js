@@ -27,9 +27,9 @@ module.exports = {
         let messagens = [];
 
         if(produto.id == undefined || produto.id == null)
-            messagens.push("Campo 'id' deve ser preenchido!")
+            messagens.push("The 'id' field must be filled!")
         if(produto.nome == undefined || produto.nome == null)
-            messagens.push("Campo 'nome' deve ser preenchido!")
+            messagens.push("The 'nome' field must be filled!")
 
         if(messagens.length == 0){
             connection.query('INSERT INTO categoria SET ?', req.body, (err, rows, fields) => {

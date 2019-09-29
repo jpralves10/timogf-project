@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+  mysql:
+    image: mysql:5.7.27
+    container_name: timogf-mysql
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=timodb
+    ports:
+      - '3307:3306'
+    volumes:
+      - data:/var/lib/mysql
+    networks:
+      - network
+
+  nodejs:
+    container_name: timogf-nodejs
+    environment:
+     - DATABASE_HOST=mysql
+    build: .
+    command: npm run prod-runtime
+    ports:
+      - '3003:3003'
+    volumes:
+      - .:/usr/app
+    networks:
+      - network
+    depends_on:
+      - mysql
+
+networks: 
+  network:
+    driver: bridge
+
+volumes:
+  data:
+    driver: local
